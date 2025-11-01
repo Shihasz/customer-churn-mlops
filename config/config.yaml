@@ -1,0 +1,63 @@
+# Project configuration
+project:
+  name: "customer-churn-mlops"
+  version: 1.0.0
+  description: "MLOps pipeline for customer churn prediction"
+
+# Data configuration
+data:
+  raw_data_path: "data/raw/churn_data.csv"
+  processed_data_path: "data/processed/"
+  test_size: 0.2
+  random_state: 42
+  validation_split: 0.2
+
+# Model configuration
+model:
+  type: "xgboost"
+  target_column: "Churn"
+
+  # Feature engineering
+  features:
+    numerical:
+      - "tenure"
+      - "MonthlyCharges"
+      - "TotalCharges"
+    categorical:
+      - "Contract"
+      - "PaymentMethod"
+      - "InternetService"
+
+  hyperparameters:
+    max_depth: 6
+    learning_rate: 0.1
+    n_estimators: 100
+    subsample: 0.8
+    colsample_bytree: 0.8
+    random_state: 42
+
+  # MLflow configuration
+mlflow:
+  tracking_uri: "mlruns"
+  experiment_name: "churn-prediction"
+  model_registry_name: "churn-model"
+
+# API configuration
+api:
+  host: "0.0.0.0"
+  port: 8000
+  reload: true
+  workers: 1
+
+# Monitoring configuration
+monitoring:
+  enable_prometheus: true
+  metrics_port: 8001
+  log_level: "INFO"
+
+# Training configuration
+training:
+  enable_early_stopping: true
+  early_stopping_rounds: 10
+  eval_metric: "auc"
+  cv_folds: 5
