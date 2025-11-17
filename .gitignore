@@ -11,6 +11,10 @@ ENV/
 dist/
 build/
 
+# Python test artifacts
+.coverage
+htmlcov/
+
 # Data
 data/raw/*
 data/processed/*
