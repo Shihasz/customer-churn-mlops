@@ -25,6 +25,8 @@ data/processed/*
 models/*.pkl
 models/*.h5
 models/*.pt
+models/*.json
+models/*.csv
 
 # IDE
 .vscode/
